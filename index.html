@@ -3,278 +3,300 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soham Vilas Ghadigaonkar Portfolio</title>
+  <title>Soham Vilas Ghadigaonkar – Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --linear-purple: #7c3aed;
+      --linear-bg-light: #f8fafc;
+      --linear-bg-dark: #18181b;
+      --linear-card-bg-light: #fff;
+      --linear-card-bg-dark: #232332;
+      --linear-border: #e4e4e7;
+    }
     body {
       font-family: 'Inter', sans-serif;
-    }
-    .hero {
-      background: linear-gradient(135deg, #1e3a8a 0%, #374151 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-    }
-    .section {
-      padding: 5rem 0;
-    }
-    .card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 2rem;
-      margin: 1rem;
-      transition: transform 0.3s;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .card:hover {
-      transform: translateY(-10px);
-    }
-    body.dark .card {
-      background: rgba(0,0,0,0.5);
-      color: white;
-    }
-    body:not(.dark) {
-      background-color: #f9fafb;
-      color: #111827;
-    }
-    body:not(.dark) .card {
-      background: white;
-      color: #111827;
-      border: 1px solid #e5e7eb;
-    }
-    body:not(.dark) .bg-gray-800 {
-      background-color: #f3f4f6;
-    }
-    body:not(.dark) .text-gray-300 {
-      color: #6b7280;
+      background: var(--linear-bg-light);
+      color: #232332;
+      transition: background 0.3s, color 0.3s;
     }
     body.dark {
-      background-color: #111827;
+      background: var(--linear-bg-dark);
+      color: #fff;
+    }
+    .sidebar {
+      width: 270px;
+      background: var(--linear-card-bg-light);
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: 40px;
+      border-right: 1px solid var(--linear-border);
+      transition: background 0.3s;
+    }
+    .sidebar.dark {
+      background: var(--linear-card-bg-dark);
+      border-color: #363649;
+    }
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #232332;
+      padding: 14px 24px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidebar nav a.active,
+    .sidebar nav a:hover {
+      background: var(--linear-purple);
+      color: #fff;
+    }
+    .sidebar.dark nav a {
+      color: #fff;
+    }
+    main {
+      margin-left: 270px;
+      padding: 48px 32px;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+    .linear-card {
+      background: var(--linear-card-bg-light);
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(124, 58, 237, 0.10);
+      padding: 2.3rem 2rem;
+      margin-bottom: 26px;
+      border: 1px solid var(--linear-border);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    body.dark .linear-card {
+      background: var(--linear-card-bg-dark);
+      box-shadow: 0 1px 8px rgba(124,58,237,0.19);
+      border-color: #282837;
+    }
+    h1, h2, h3 {
+      font-family: 'Inter', sans-serif;
+    }
+    h1 {
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: var(--linear-purple);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--linear-purple);
+      margin-bottom: 18px;
+    }
+    h3 {
+      font-weight: 600;
+      font-size: 1.12rem;
+      margin-bottom: 8px;
+    }
+    .fade-in {
+      animation: fadein 0.9s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .theme-btn {
+      float: right;
+      background: var(--linear-purple);
       color: white;
+      border-radius: 100px;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      margin-right: 32px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+      transition: background 0.3s;
     }
-    body.dark .bg-gray-800 {
-      background-color: #1f2937;
-    }
-    body.dark .text-gray-300 {
-      color: #d1d5db;
+    .theme-btn:hover { background: #9652fe; }
+    @media (max-width: 900px) {
+      .sidebar { width:80px; padding-top:15px;}
+      .sidebar nav a span { display:none;}
+      main { margin-left:80px; }
     }
   </style>
 </head>
-<body class="dark">
-  <header class="fixed top-0 left-0 w-full bg-gradient-to-r from-gray-800 to-gray-900 shadow-lg z-50">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-white">Soham Vilas Ghadigaonkar</h1>
-      <ul class="hidden md:flex space-x-8 text-lg font-medium text-white">
-        <li class="cursor-pointer hover:text-blue-400 transition-colors duration-300" id="aboutBtn">About</li>
-        <li class="cursor-pointer hover:text-blue-400 transition-colors duration-300" id="educationBtn">Education</li>
-        <li class="cursor-pointer hover:text-blue-400 transition-colors duration-300" id="skillsBtn">Skills</li>
-        <li class="cursor-pointer hover:text-blue-400 transition-colors duration-300" id="experienceBtn">Experience</li>
-        <li class="cursor-pointer hover:text-blue-400 transition-colors duration-300" id="projectsBtn">Projects</li>
-        <li class="cursor-pointer hover:text-blue-400 transition-colors duration-300" id="achievementsBtn">Achievements</li>
-        <li class="cursor-pointer hover:text-blue-400 transition-colors duration-300" id="contactBtn">Contact</li>
-      </ul>
-      <button id="themeToggle" class="ml-4 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700">
-        <i class="fas fa-moon"></i>
-      </button>
-    </nav>
-  </header>
-  <section class="hero">
-    <div>
-      <img src="https://via.placeholder.com/150" alt="Soham Vilas Ghadigaonkar" class="rounded-full mx-auto mb-4 border-4 border-white">
-      <h1 class="text-6xl font-bold mb-4">Soham Vilas Ghadigaonkar</h1>
-      <p class="text-xl mb-2">Mumbai, India</p>
-      <p class="text-lg mb-8">Electronics and Telecommunication Engineering Student | Embedded Systems & IoT Enthusiast</p>
-      <a href="#about" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Learn More</a>
+<body class="">
+  <aside class="sidebar fade-in" id="sidebar">
+    <div class="flex justify-between items-center px-8 mb-6">
+      <img src="https://via.placeholder.com/60" alt="Avatar" class="rounded-full border-4 border-purple-500">
+      <div class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></div>
     </div>
-  </section>
-  <main class="max-w-6xl mx-auto px-8">
-    <section id="about" class="section">
-      <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">About Me</h2>
-      <p class="text-lg text-center">
-        I'm an Electronics and Telecommunication Engineering student with hands-on experience in embedded systems, IoT applications, and FPGA projects. I enjoy solving real-world problems through technology, have experience guiding peers, participating in team-based projects, and exploring digital design and low-cost hardware.
+    <nav>
+      <a href="#about" class="active"><i class="fas fa-user"></i><span>About</span></a>
+      <a href="#education"><i class="fas fa-graduation-cap"></i><span>Education</span></a>
+      <a href="#skills"><i class="fas fa-cogs"></i><span>Skills</span></a>
+      <a href="#experience"><i class="fas fa-industry"></i><span>Experience</span></a>
+      <a href="#projects"><i class="fas fa-microchip"></i><span>Projects</span></a>
+      <a href="#achievements"><i class="fas fa-trophy"></i><span>Achievements</span></a>
+      <a href="#contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
+    </nav>
+  </aside>
+  <main>
+    <div class="linear-card fade-in" id="about">
+      <h1>Soham Vilas Ghadigaonkar</h1>
+      <p class="mb-1 text-gray-600 font-medium">Mumbai, India</p>
+      <p class="mb-5 text-lg">Electronics and Telecommunication Engineering Student<br>Embedded Systems &amp; IoT Enthusiast</p>
+      <p class="mb-1">
+        I'm an Electronics and Telecommunication Engineering student with hands-on experience in embedded systems, IoT applications, and FPGA projects. Passionate about digital design and guiding peers.
       </p>
-    </section>
-    <section id="education" class="section">
-      <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Education</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <i class="fas fa-graduation-cap text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">BE in Electronics and Telecommunication Engineering</h3>
-          <p>Don Bosco Institute of Technology<br>2023 – 2026 (Expected)<br>CGPA: 6.97/10</p>
+    </div>
+    <div class="linear-card fade-in" id="education">
+      <h2>Education</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3>BE in Electronics &amp; Telecommunication</h3>
+          <p class="text-sm text-gray-600">Don Bosco Institute of Technology<br>2023 – 2026 (Expected)<br>CGPA: 6.97/10</p>
         </div>
-        <div class="card">
-          <i class="fas fa-certificate text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Diploma in Industrial Electronics</h3>
-          <p>K.J. Somaiya Polytechnic<br>2020 – 2023<br>75.10% (MSBTE Board)</p>
+        <div>
+          <h3>Diploma in Industrial Electronics</h3>
+          <p class="text-sm text-gray-600">K.J. Somaiya Polytechnic<br>2020 – 2023<br>75.10% (MSBTE Board)</p>
         </div>
-        <div class="card">
-          <i class="fas fa-school text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Secondary School Certificate</h3>
-          <p>Ahilya Vidyalaya English Medium School<br>2020<br>72.40% (MSBSHSE Board)</p>
+        <div>
+          <h3>Secondary School Certificate</h3>
+          <p class="text-sm text-gray-600">Ahilya Vidyalaya English Medium School<br>2020<br>72.40% (MSBSHSE Board)</p>
         </div>
       </div>
-    </section>
-    <section id="skills" class="section">
-      <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Skills & Expertise</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="card">
-          <i class="fas fa-code text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Programming Languages</h3>
-          <p>C/C++, Python, Verilog, HTML, CSS</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-tools text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Tools & IDEs</h3>
-          <p>Git/GitHub, VS Code, KiCad, Arduino IDE, SIM800L, STM32CubeIDE</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-microchip text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Platforms</h3>
-          <p>Arduino, Raspberry Pi, STM32, Spartan-6 FPGA</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-network-wired text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Protocols</h3>
-          <p>UART, RS485, GSM, Modbus</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-cogs text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Systems</h3>
-          <p>Embedded Design, Real-Time Monitoring, Wireless Communication</p>
-        </div>
+    </div>
+    <div class="linear-card fade-in" id="skills">
+      <h2>Skills &amp; Expertise</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div><h3>Programming Languages</h3><p class="text-sm">C/C++, Python, Verilog, HTML, CSS</p></div>
+        <div><h3>Tools &amp; IDEs</h3><p class="text-sm">Git/GitHub, VS Code, KiCad, Arduino IDE, STM32CubeIDE</p></div>
+        <div><h3>Platforms</h3><p class="text-sm">Arduino, Raspberry Pi, STM32, Spartan-6 FPGA</p></div>
+        <div><h3>Protocols</h3><p class="text-sm">UART, RS485, GSM, Modbus</p></div>
+        <div><h3>Systems</h3><p class="text-sm">Embedded Design, Real-Time Monitoring, Wireless Communication</p></div>
       </div>
-    </section>
-    <section id="experience" class="section">
-      <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Experience</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="card">
-          <i class="fas fa-user-graduate text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Student Delivery Lead</h3>
-          <p class="mb-2">CrEAST 2024, Larsen & Toubro (CSR Project)</p>
-          <p>"Let’s-Bot-It" Robotics Education Program</p>
-          <p class="text-sm">Dec 2024</p>
-          <ul class="list-disc list-inside mt-2">
-            <li>Trained 9th-grade students in embedded systems and robotics</li>
-            <li>Delivered Arduino-based workshops and assessments</li>
-            <li>Managed course structure and student exhibition activities</li>
-          </ul>
-        </div>
-        <div class="card">
-          <i class="fas fa-industry text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Intern</h3>
-          <p class="mb-2">Godrej & Boyce, Mechatronics Department</p>
-          <p class="text-sm">Jun – Aug 2022</p>
-          <ul class="list-disc list-inside mt-2">
-            <li>Developed IoT-based sensor monitoring systems (Arduino Nano, Raspberry Pi) for real-time data acquisition and Node-RED visualization</li>
-            <li>Implemented sensor data collection using DHT11/pressure sensors and RS485 Modbus communication network for distributed monitoring</li>
-            <li>Integrated Production Monitoring System (PMS) with optocouplers, DC-DC converters, and automated email alert systems</li>
-            <li>Gained practical experience in industrial automation, embedded programming, and IoT protocols</li>
-          </ul>
-        </div>
+    </div>
+    <div class="linear-card fade-in" id="experience">
+      <h2>Experience</h2>
+      <div>
+        <h3>Student Delivery Lead – CrEAST 2024, Larsen &amp; Toubro (CSR Project)</h3>
+        <p class="text-sm mb-1">"Let’s-Bot-It" Robotics Education Program <span class="text-gray-500 ml-2">Dec 2024</span></p>
+        <ul class="list-disc pl-6 text-sm">
+          <li>Trained 9th-grade students in embedded systems & robotics</li>
+          <li>Delivered Arduino-based workshops and assessments</li>
+          <li>Managed course structure and student exhibition activities</li>
+        </ul>
+        <h3 class="mt-6">Intern – Godrej &amp; Boyce, Mechatronics Dept.</h3>
+        <p class="text-sm mb-1">Jun – Aug 2022</p>
+        <ul class="list-disc pl-6 text-sm">
+          <li>Developed IoT sensor monitoring (Arduino Nano, Raspberry Pi)</li>
+          <li>Node-RED visualization, RS485 Modbus comms, email alerts</li>
+          <li>Industrial automation, embedded programming, protocols</li>
+        </ul>
       </div>
-    </section>
-    <section id="projects" class="section">
-      <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Projects</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="card">
-          <i class="fas fa-microchip text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">UART Implementation on Spartan-6 FPGA</h3>
-          <p class="text-sm mb-2">Jan – Apr 2025</p>
-          <ul class="list-disc list-inside">
-            <li>Built a UART communication setup on Spartan-6 FPGA using Verilog</li>
-            <li>Tested via PC input; data received on FPGA (USB-UART), displayed on 7-segment displays</li>
-            <li>Tools: Verilog, 7-Segment Display, USB-UART</li>
+    </div>
+    <div class="linear-card fade-in" id="projects">
+      <h2>Projects</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3>UART Implementation on Spartan-6 FPGA</h3>
+          <p class="text-sm mb-1">Jan – Apr 2025</p>
+          <ul class="list-disc pl-5 text-sm">
+            <li>UART on Spartan-6 (Verilog), PC input via USB-UART</li>
+            <li>7-segment displays, Verilog, USB-UART</li>
           </ul>
         </div>
-        <div class="card">
-          <i class="fas fa-box text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Secure Package Reception Box</h3>
-          <p class="text-sm mb-2">Jul – Nov 2024</p>
-          <ul class="list-disc list-inside">
-            <li>Designed a delivery box that unlocks using OTP sent via GSM, triggered by an IR sensor</li>
-            <li>Tools: STM32, GSM SIM800L, C/C++, IR Sensor, Servo Motor, 4x4 Keypad</li>
+        <div>
+          <h3>Secure Package Reception Box</h3>
+          <p class="text-sm mb-1">Jul – Nov 2024</p>
+          <ul class="list-disc pl-5 text-sm">
+            <li>OTP unlock via GSM, IR sensor-triggered</li>
+            <li>STM32, GSM SIM800L, C/C++, IR Sensor, Servo Motor</li>
           </ul>
         </div>
-        <div class="card">
-          <i class="fas fa-fire text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Fire Detection and Alert System</h3>
-          <p class="text-sm mb-2">Jan – Apr 2024</p>
-          <ul class="list-disc list-inside">
-            <li>Detected fire hazards using IR flame and gas sensors; triggered buzzer and SMS alerts for rapid response</li>
-            <li>Tools: Arduino Uno, IR Flame Sensor, Gas Sensor, DHT, GSM SIM800L</li>
+        <div>
+          <h3>Fire Detection & Alert System</h3>
+          <p class="text-sm mb-1">Jan – Apr 2024</p>
+          <ul class="list-disc pl-5 text-sm">
+            <li>IR flame/gas sensors, buzzer & SMS alerts</li>
+            <li>Arduino Uno, GSM SIM800L</li>
           </ul>
         </div>
-        <div class="card">
-          <i class="fas fa-traffic-light text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">IC 555-Based Traffic Light Controller</h3>
-          <p class="text-sm mb-2">Jul – Nov 2023</p>
-          <ul class="list-disc list-inside">
-            <li>Simulated stop/go/wait traffic system using IC 555 configured in astable mode</li>
-            <li>Tools: Timer IC 555, Breadboard, LEDs</li>
+        <div>
+          <h3>IC 555-Based Traffic Light Controller</h3>
+          <p class="text-sm mb-1">Jul – Nov 2023</p>
+          <ul class="list-disc pl-5 text-sm">
+            <li>Astable mode traffic simulation</li>
+            <li>Timer IC 555, LEDs</li>
           </ul>
         </div>
       </div>
-    <section id="achievements" class="section">
-      <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Achievements</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="card">
-          <i class="fas fa-trophy text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Third Runner-Up – InnoQuest 2023</h3>
+    </div>
+    <div class="linear-card fade-in" id="achievements">
+      <h2>Achievements</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3>Third Runner-Up – InnoQuest 2023</h3>
         </div>
-        <div class="card">
-          <i class="fas fa-users text-3xl mb-4 text-blue-600"></i>
-          <h3 class="text-xl font-semibold mb-2">Head Event Coordinator</h3>
-          <p>Roboton workshop (under IEEE)</p>
-          <p>Conducted a hands-on workshop on building a hand gesture-controlled bot</p>
+        <div>
+          <h3>Head Event Coordinator (Roboton workshop under IEEE)</h3>
+          <p class="text-sm">Workshop on hand gesture-controlled bot</p>
         </div>
       </div>
-    </section>
-    </section>
-    <section id="contact" class="section">
-      <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Connect with Me</h2>
-      <div class="flex justify-center space-x-8">
-        <a href="mailto:sohamghadigaonkar29@gmail.com" class="text-3xl hover:text-blue-600 transition"><i class="fas fa-envelope"></i></a>
-        <a href="tel:+919967521066" class="text-3xl hover:text-blue-600 transition"><i class="fas fa-phone"></i></a>
-        <a href="https://github.com/Soham2974" class="text-3xl hover:text-blue-600 transition"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/soham-ghadigaonkar-2b8827239/" class="text-3xl hover:text-blue-600 transition"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="linear-card fade-in" id="contact">
+      <h2>Connect with Me</h2>
+      <div class="flex gap-7 mb-5">
+        <a href="mailto:sohamghadigaonkar29@gmail.com" class="text-3xl hover:text-purple-600"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+919967521066" class="text-3xl hover:text-purple-600"><i class="fas fa-phone"></i></a>
+        <a href="https://github.com/Soham2974" class="text-3xl hover:text-purple-600"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/soham-ghadigaonkar-2b8827239/" class="text-3xl hover:text-purple-600"><i class="fab fa-linkedin"></i></a>
         <span class="text-3xl"><i class="fab fa-discord"></i> soham.2974</span>
       </div>
-      <p class="text-center mt-4">Phone: +91-9967521066 | +91-9967813909</p>
-    </section>
+      <p class="mt-2 text-gray-700 dark:text-gray-300 text-sm">Phone: +91-9967521066 | +91-9967813909</p>
+    </div>
+    <footer class="mt-12 text-center text-gray-400 text-sm">
+      &copy; <span id="currentYear"></span> Soham Vilas Ghadigaonkar. All Rights Reserved.
+    </footer>
   </main>
-  <footer class="py-6 bg-gray-800 text-center">
-    <p class="text-lg">&copy; <span id="currentYear"></span> Soham Vilas Ghadigaonkar. All Rights Reserved.</p>
-  </footer>
   <script>
+    // Theme Switch
     const themeToggleBtn = document.getElementById('themeToggle');
-    const currentYear = document.getElementById('currentYear');
     const body = document.body;
-    currentYear.textContent = new Date().getFullYear();
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      body.classList.add(savedTheme);
-      updateThemeIcon(savedTheme);
+    function setTheme(theme) {
+      if(theme === 'dark') {
+        body.classList.add('dark');
+        document.getElementById('sidebar').classList.add('dark');
+        themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        body.classList.remove('dark');
+        document.getElementById('sidebar').classList.remove('dark');
+        themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+      localStorage.setItem('theme', theme);
     }
-    themeToggleBtn.addEventListener('click', () => {
-      const newTheme = body.classList.contains('dark') ? 'light' : 'dark';
-      body.classList.toggle('dark', newTheme === 'dark');
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon(newTheme);
+    themeToggleBtn.addEventListener('click', function(){
+      setTheme(body.classList.contains('dark') ? 'light' : 'dark');
     });
-    function updateThemeIcon(theme) {
-      themeToggleBtn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    }
-    document.getElementById('aboutBtn').addEventListener('click', () => document.getElementById('about').scrollIntoView({ behavior: 'smooth' }));
-    document.getElementById('educationBtn').addEventListener('click', () => document.getElementById('education').scrollIntoView({ behavior: 'smooth' }));
-    document.getElementById('skillsBtn').addEventListener('click', () => document.getElementById('skills').scrollIntoView({ behavior: 'smooth' }));
-    document.getElementById('experienceBtn').addEventListener('click', () => document.getElementById('experience').scrollIntoView({ behavior: 'smooth' }));
-    document.getElementById('projectsBtn').addEventListener('click', () => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' }));
-    document.getElementById('achievementsBtn').addEventListener('click', () => document.getElementById('achievements').scrollIntoView({ behavior: 'smooth' }));
-    document.getElementById('contactBtn').addEventListener('click', () => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }));
+    const userTheme = localStorage.getItem('theme');
+    setTheme(userTheme || 'light');
+
+    // Year update
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Sidebar navigation - smooth scroll
+    Array.from(document.querySelectorAll('.sidebar nav a')).forEach(a => {
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        document.querySelectorAll('.sidebar nav a').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:"smooth"});
+      });
+    });
   </script>
 </body>
 </html>
